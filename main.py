@@ -1,8 +1,8 @@
 from __future__ import division
-from Tkinter import *
-import tkMessageBox
+from tkinter import *
+import tkinter.messagebox as tkMessageBox
 from PIL import Image, ImageTk
-import ttk
+from tkinter import ttk
 import os
 import glob
 import random
@@ -140,7 +140,7 @@ class AnnotationTool():
 
 	def addClass(self):
 		className = self.classEntry.get()
-		print "add class : ", className
+		print("add class : ", className)
 		if className:
 			self.classNames.append(className)
 		if self.classNames:
@@ -153,28 +153,26 @@ class AnnotationTool():
 		if not dbg:
 			s = self.entry.get()
 			self.parent.focus()
-			self.category = int(s)
 
-		self.imageDir = os.path.join(
-			self.sourceImageDir, '%03d' % (self.category))
+		self.imageDir = s
 		if not os.path.exists(self.imageDir):
-			print "No such directory present : ", self.imageDir
+			print("No such directory present : ", self.imageDir)
 			return
 
 		if self.imageFormat == "PNG":
 			self.imageList = glob.glob(os.path.join(self.imageDir, '*.png'))
 			if len(self.imageList) == 0:
-				print 'No .png images found in the specified dir!'
+				print('No .png images found in the specified dir!')
 				return
 		elif self.imageFormat == "JPEG":
 			self.imageList = glob.glob(os.path.join(self.imageDir, '*.jpeg'))
 			if len(self.imageList) == 0:
-				print 'No .jpeg images found in the specified dir!'
+				print ('No .jpeg images found in the specified dir!')
 				return
 		else:
 			self.imageList = glob.glob(os.path.join(self.imageDir, '*.jpg'))
 			if len(self.imageList) == 0:
-				print 'No .jpg images found in the specified dir!'
+				print ('No .jpg images found in the specified dir!')
 				return
 
 		# default to the 1st image in the collection
@@ -182,13 +180,12 @@ class AnnotationTool():
 		self.total = len(self.imageList)
 
 		# set up output dir
-		self.outDir = os.path.join(
-			self.annotationDir, '%03d' % (self.category))
+		self.outDir = self.annotationDir
 		if not os.path.exists(self.outDir):
 			os.mkdir(self.outDir)
 
 		self.loadImage()
-		print '%d images loaded from %s' % (self.total, s)
+		print ('%d images loaded from %s' % (self.total, s))
 
 	def loadImage(self):
 		# load image
@@ -233,7 +230,7 @@ class AnnotationTool():
 				f.write('%d\n' % len(self.bboxList))
 				for bbox in self.bboxList:
 					f.write(' '.join(map(str, bbox)) + '\n')
-			print 'Image No. %d saved' % (self.cur)
+			print ('Image No. %d saved' % (self.cur))
 
 	def mouseClick(self, event):
 		if self.STATE['click'] == 0:

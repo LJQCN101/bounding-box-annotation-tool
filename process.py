@@ -31,7 +31,7 @@ def process():
 			counter = counter + 1
 
 	if not filesPresent:
-		print "No Files Present in the Directory : ", DATA_PATH
+		print ("No Files Present in the Directory : ", DATA_PATH)
 
 	return
 

@@ -34,7 +34,7 @@ class YoloConvertor():
 		for annotationFileName in self.annotationFilesList:
 			annotationFilePath = os.path.join(
 				self.annotationDir, annotationFileName)
-			print "Annotation File Path : ", annotationFilePath
+			print ("Annotation File Path : ", annotationFilePath)
 
 			annotationFile = open(annotationFilePath, "r")
 			lines = annotationFile.read().split("\n")
@@ -43,7 +43,7 @@ class YoloConvertor():
 				continue
 
 			outputFilePath = os.path.join(self.outPath, annotationFileName)
-			print "Output File Path : ", outputFilePath
+			print ("Output File Path : ", outputFilePath)
 
 			outputFile = open(outputFilePath, "w")
 
@@ -51,7 +51,7 @@ class YoloConvertor():
 			for line in lines:
 				if(len(line) >= 2):
 					cnt += 1
-					print "Line : ", line, " \n"
+					print ("Line : ", line, " \n")
 					elems = line.split(' ')
 					xmin = elems[0]
 					xmax = elems[2]
@@ -97,10 +97,10 @@ class YoloConvertor():
 			self.annotationFilesList.extend(filenames)
 			if self.annotationDir:
 				filesPresent = True
-				print self.annotationFilesList
+				print (self.annotationFilesList)
 			break
 		if not filesPresent:
-			print "No Annotated Files Present in the Directory : ", self.annotationDir
+			print ("No Annotated Files Present in the Directory : ", self.annotationDir)
 			return
 
 		self._process()
